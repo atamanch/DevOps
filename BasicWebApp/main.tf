@@ -5,14 +5,13 @@ provider "aws" {
   
 }
 
+# Spin up a t2.micro instance using the key_pair, subnet and VPC defined in other TF files
 resource "aws_instance" "web_server" {
   ami           = "ami-09d95fab7fff3776c"
   instance_type = "t2.micro"
   key_name = aws_key_pair.deployer.key_name
   subnet_id = aws_subnet.main-public-1.id
-  # TODO - fix this such that it dynamically grabs the security group ID
-  # vpc_security_group_ids = ["aws_security_group.web_dmz.id",]
-  vpc_security_group_ids = ["sg-04287210de3a2e2fc"]
+  vpc_security_group_ids = [aws_security_group.web_dmz.id]
 
   provisioner "remote-exec" {
     connection {
@@ -29,11 +28,12 @@ resource "aws_instance" "web_server" {
       "sudo systemctl enable docker",
       "sudo usermod -a -G docker ec2-user",
       # TODO - figure out how to reboot an instance and wait until the instance is back up
-      "sudo reboot",
+      # "sudo reboot",
     ]
   }
 
-  # Second remote-exec for running the docker container for the Python Web App
+  # Second remote-exec for running the docker container for the Python Web App. 
+  # Required due to the need for a logout from previous step
   provisioner "remote-exec" {
     connection {
       type = "ssh"
@@ -43,7 +43,8 @@ resource "aws_instance" "web_server" {
       timeout = "30s"
     }
     inline = [
-      "docker container run -p 80:80 atamanch/dockerstore"
+      # Run docker container in detached mode (-d) over port 80 from the latest image in my docker hub
+      "docker container run -d -p 80:80 atamanch/dockerstore"
     ]
   }
 
