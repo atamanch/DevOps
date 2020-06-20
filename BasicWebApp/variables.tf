@@ -4,6 +4,11 @@ variable "region" {
 variable "private_key_path"{
     default = "C:/AWS/Keys/MyUSE1KP"
 }
+variable "alb_logs_s3_bucket"{
+    default = ""
+}
+
 locals {
-    availability_zone = "${var.region}a"
+    availability_zone_a = "${var.region}a"
+    availability_zone_b = "${var.region}b"
 }
