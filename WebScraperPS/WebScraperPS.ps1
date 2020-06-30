@@ -9,8 +9,8 @@ $HashUpdateDate = "`nThe websites hash was last updated on " + $Date
 
 # URL to website goes here, as well as the search pattern we want to filter on later
 # You will want to tweak these depending on the structure of the site you want to monitor
-$Website = "https://club.commonhealth.com.tw/channel/70"
-$SearchPattern = "https://club.commonhealth.com.tw/article*"
+$Website = "<insert the URL of the site you want to scrape here>"
+$SearchPattern = "<insert the search patten your would like to search for here>"
 
 # Get the HTTP response from the website
 $Response = Invoke-WebRequest -URI $Website
