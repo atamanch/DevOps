@@ -1,0 +1,9 @@
+1 CRITICAL
+2 WARNING
+3 ERROR
+4 Critical
+5 Warning
+6 Error
+7 critical
+8 warning
+9 error
