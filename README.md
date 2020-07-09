@@ -6,7 +6,7 @@
 
 Docker Image: https://hub.docker.com/repository/docker/atamanch/dockerstore
 
-Technologies used: Terraform, Ansible, Docker, Jenkins, Python, EC2, ELB, Autoscaling policy
+Technologies used: Terraform, Docker, AWS EC2, AWS ELB, AWS Autoscaling policy, Python
 
 **How to use:**
 
