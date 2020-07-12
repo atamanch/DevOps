@@ -2,9 +2,18 @@
 
 import requests
 from bs4 import BeautifulSoup
+from outboundemail import send_email
+
+# Get email details for update emails
+sender_email = "you@gmail.com"  # Enter your address
+receiver_email = "them@gmail.com"  # Enter receiver address
+email_server = "smtp.gmail.com"
+port = 465  # For SSL
+password = input("Type your password and press enter: ")
 
 # Query website, store the result as a variable and soupify it
-result = requests.get("<enter your URL here>")
+website = "https://something.youd.like.to.monitor"
+result = requests.get(website)
 src = result.content
 soup = BeautifulSoup(src, 'lxml')
 
@@ -41,15 +50,24 @@ try:
         state_file.write(total_count+"\n")
         state_file.write(urls)
 
-        #TODO
         # Email function for sending emails when changes are detected
+        message = """\
+        Subject: Monitored Website Changed!\n""" + website + " has changed!\n" + """This message is sent using Python."""
+        # Send the email
+        send_email(sender_email, email_server, receiver_email, port, password, message)
     else:
+        message = None
         print("\nNo changes in state detected")
 except:
     print("\nNo state file exists, creating one called StateFile.txt")
     state_file = open("StateFile.txt", "w", encoding="utf-8")
     state_file.write(total_count+"\n")
     state_file.write(urls)
+    message = """\
+        Subject: Started Monitoring Website\n""" + website + " monitoring has started! State file created.\n" + """This message is sent using Python."""
+    # Send the email
+    send_email(sender_email, email_server, receiver_email, port, password, message)
 
+# Close the open file handle
 finally:
     state_file.close()
