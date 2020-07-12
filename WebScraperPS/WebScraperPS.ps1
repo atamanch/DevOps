@@ -9,14 +9,23 @@ $HashUpdateDate = "`nThe websites hash was last updated on " + $Date
 
 # URL to website goes here, as well as the search pattern we want to filter on later
 # You will want to tweak these depending on the structure of the site you want to monitor
-$Website = "<insert the URL of the site you want to scrape here>"
-$SearchPattern = "<insert the search patten your would like to search for here>"
+$Website = "https://club.commonhealth.com.tw/channel/70"
+$SearchPattern = "https://club.commonhealth.com.tw/article*"
+
+# Enter some email notification settings into a splat
+$emailArguments = @{
+    From       = "atamanch@gmail.com"
+    To         = "atamanch@gmail.com"
+    SMTPServer = "smtp.gmail.com"
+    Port   = "465"
+}
+
 
 # Get the HTTP response from the website
 $Response = Invoke-WebRequest -URI $Website
 
 # Filter the response down by strings that much the search pattern
-$ResponseContent = $Response.Links | Select href | Select-String -Pattern $SearchPattern
+$ResponseContent = $Response.Links | Select-Object href | Select-String -Pattern $SearchPattern
 
 # Compute the hash from the above filter response
 $MD5 = New-Object -TypeName System.Security.Cryptography.MD5CryptoServiceProvider
@@ -34,7 +43,6 @@ if (test-path $StateFile){
     $OldStateFileHash = ($OldStateFile.Split([Environment]::NewLine)[0])
     $OldStateFileDate = ($OldStateFile.Split([Environment]::NewLine)[1])
 
-
     # Check if old and new states match
     if ($Hash -ne $OldStateFileHash){
 
@@ -45,14 +53,16 @@ if (test-path $StateFile){
 
         "`nOverwriting current state to statefile $StateFile"
 
-
-
         $CurrentStateFileOutput | Out-File $StateFile -Encoding UTF8
 
-        # TODO 
         # Create email and send it
+        $emailArguments.Add("Subject", "Monitored Website Changed!")
+        $emailArguments.Add("Body", ($Website + " changed, you may want to check this out."))
+        Send-MailMessage @emailArguments
+
     }
 
+    # Found no differences, site has not changed
     else {
 
         Write-Output "No differences found in website," `
@@ -64,5 +74,8 @@ else{
 
     Write-Output "State file is missing, creating one now at $StateFile"
     $CurrentStateFileOutput | Out-File $StateFile
+    $emailArguments.Add("Subject", "Started Monitoring Website")
+    $emailArguments.Add("Body", ($Website + " monitoring has started! State file created."))
+    Send-MailMessage @emailArguments
 
 }
