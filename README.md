@@ -8,7 +8,8 @@ Technologies used: Terraform, Docker, AWS EC2, AWS ELB, AWS Autoscaling policy, 
 
 **How to use:**
 
-1) Clone this repository 
+1) Clone this repository
+
 2a) If you prefer to run in AWS:
 	  Edit the **BasicWebApp/AWS/variables.tf** file to fit your environment.
     
