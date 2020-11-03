@@ -36,7 +36,7 @@ resource "aws_alb_target_group" "web" {
   vpc_id   = aws_vpc.main.id
 
   health_check {
-    matcher = "200,403,304"
+    matcher = "200,304"
     interval = 10
   }
 }
