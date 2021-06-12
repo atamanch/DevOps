@@ -57,7 +57,7 @@ ForEach ($machine in $machines) {
 }
 
 # Format result as a table and output it
-$allChromeInfo | Format-Table -AutoSize
+$allChromeInfo | Sort "Mem Usage(MB)" -Descending | Format-Table -AutoSize 
 # $allChromeInfoGP | Format-Table -AutoSize
 
 # Export result into CSV format
