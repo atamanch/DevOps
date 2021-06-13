@@ -32,8 +32,8 @@ You will need to replace the "ssh_public_key" field with the path of your public
 
 
 **DirAnaylzerPy** is a Python script which outputs file and folder statistics like size and count for a given local directory.
-![Alt text](/DirAnalyzerPy/Screenshot 2021-06-13 114000.jpg?raw=true "Optional Title")
-![Alt text](/DirAnalyzerPy/Screenshot 2021-06-13 114028.jpg?raw=true "Optional Title")
-![Alt text](/DirAnalyzerPy/Screenshot 2021-06-13 120801.jpg?raw=true "Optional Title")
+![Alt text](/DirAnalyzerPy/Screenshot 2021-06-13 114000.jpg?raw=true "Extension Distrbution by Count")
+![Alt text](/DirAnalyzerPy/Screenshot 2021-06-13 114028.jpg?raw=true "Extension Distribution by Size")
+![Alt text](/DirAnalyzerPy/Screenshot 2021-06-13 120801.jpg?raw=true "Folder Sizes")
 
 https://www.linkedin.com/in/art-anderson/
