@@ -30,4 +30,10 @@ You will need to replace the "ssh_public_key" field with the path of your public
 
 **WebScraperPy** is a Python script which can detect changes on a website over time. It queries a website and saves the site's state in a statefile. Re-running the script will cause the script to re-query the site, comparing the old state to the current state. If a difference is detected, the script will notify the user via email.
 
+
+**DirAnaylzerPy** is a Python script which outputs file and folder statistics like size and count for a given local directory.
+![Alt text](/DirAnalyzerPy/Screenshot 2021-06-13 114000.jpg?raw=true "Optional Title")
+![Alt text](/DirAnalyzerPy/Screenshot 2021-06-13 114028.jpg?raw=true "Optional Title")
+![Alt text](/DirAnalyzerPy/Screenshot 2021-06-13 120801.jpg?raw=true "Optional Title")
+
 https://www.linkedin.com/in/art-anderson/
