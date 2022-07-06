@@ -42,6 +42,6 @@ You will need to replace the "ssh_public_key" field with the path of your public
 
 **CuddleOTron** is a Serverless website which demonstrates how S3, API Gateway, Lambda, Step Functions, SNS and SES can be combined to create a fun way for your pet to remind you to show it some attention.
 
-![CuddleOTron Architecture](/CuddleOTron/ARCHITECTURE.png?raw=true "CuddleOTron Architecture")
+![CuddleOTron Architecture](/CuddleOTron/ARCHITECTURE.jpg?raw=true "CuddleOTron Architecture")
 
 https://www.linkedin.com/in/art-anderson/
